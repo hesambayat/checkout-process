@@ -15,7 +15,10 @@ See [Sass documentation](https://sass-lang.com/documentation/). \
 See [BEM introduction](http://getbem.com/introduction/).
 
 ## Reusing components
-The components exported with `@/compontents/index.js` are globally defined. For the constancy, component folders and component names are dashed lowercase and prefixed with their type, e.g `el-` as element.
+The components exported with `@/compontents/index.js` are globally defined. For the constancy, component folders and component names are dashed lowercase and prefixed with their type, e.g. `el-` as an element.
+
+## Store
+This app uses Vuex as a centralized store for state management pattern + library.
 
 ### Customize configuration
 See [Configuration reference](https://cli.vuejs.org/config/).
