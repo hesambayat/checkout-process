@@ -14,5 +14,8 @@ This app uses Sass pre-processor and follows BEM methodology. \
 See [Sass documentation](https://sass-lang.com/documentation/). \
 See [BEM introduction](http://getbem.com/introduction/).
 
+## Reusing components
+The components exported with `@/compontents/index.js` are globally defined. For the constancy, component folders and component names are dashed lowercase and prefixed with their type, e.g `el-` as element.
+
 ### Customize configuration
 See [Configuration reference](https://cli.vuejs.org/config/).
