@@ -1,11 +1,31 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Landing from '@/views/Landing'
+import Home from '@/views/Home'
 
 const routes = [
   {
     path: '/',
-    name: 'Landing',
-    component: Landing
+    name: 'Home',
+    component: Home
+  },
+  {
+    path: '/info',
+    name: 'Info',
+    component: () => import('@/views/Info')
+  },
+  {
+    path: '/consent',
+    name: 'Consent',
+    component: () => import('@/views/Consent')
+  },
+  {
+    path: '/account',
+    name: 'Account',
+    component: () => import('@/views/Account')
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: '404',
+    component: () => import('@/views/404')
   },
 ]
 
