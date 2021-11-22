@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { required } from '@/utils/validators'
+import { github, required } from '@/utils/validators'
 
 export default {
   name: 'Info',
@@ -45,8 +45,7 @@ export default {
         return this.$store.state.userInfo.githubUsername
       },
       set(value) {
-        this.errors.githubUsername = !required(value) ? 'Github username is required' : ''
-        // TODO: add github username validation
+        this.errors.githubUsername = !required(value) ? 'Github username is required' : !github(value) ? 'Invalid Github username' : ''
         this.$store.commit('setGithubUsername', value)
       }
     }

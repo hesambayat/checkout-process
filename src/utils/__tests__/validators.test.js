@@ -1,6 +1,28 @@
-import { email, required } from '../validators'
+import { email, github, required } from '../validators'
 
 describe('validators', () => {
+  it('github', () => {
+    // invalid username
+    expect(github()).toBe(false)
+    expect(github('')).toBe(false)
+    expect(github('  ')).toBe(false)
+    expect(github(null)).toBe(false)
+    expect(github(undefined)).toBe(false)
+    expect(github('a_b')).toBe(false)
+    expect(github('a--b')).toBe(false)
+    expect(github('a-b-')).toBe(false)
+    expect(github('-a-b')).toBe(false)
+    expect(github('a'.repeat(40))).toBe(false)
+    expect(github('john.doe@example.com')).toBe(false)
+    expect(github('https://github.com/johndoe')).toBe(false)
+    // valid username
+    expect(github('a')).toBe(true)
+    expect(github('0')).toBe(true)
+    expect(github('a-b')).toBe(true)
+    expect(github('a-b-123')).toBe(true)
+    expect(github('a'.repeat(39))).toBe(true)
+  })
+
   it('email', () => {
     // invalid emails
     expect(email()).toBe(false)
