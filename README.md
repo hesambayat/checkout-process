@@ -18,7 +18,7 @@ See [BEM introduction](http://getbem.com/introduction/).
 ## Reusing components
 The components exported with `@/compontents/index.js` are globally defined. For the constancy, component folders and component names are dashed lowercase and prefixed with their type, e.g. `el-` as an element.
 
-### Input
+### Input `<el-input>`
 A model input component.
 #### Input props
 | Name         | Type         | Default      | Description |
@@ -28,7 +28,20 @@ A model input component.
 | label        | `string`     | `undefined`  | The input label renders above the field |
 | type         | `string`     | `undefined`  | The input type |
 
-#### Input two-way binding
+#### Input two-way data binding
+| Name         | Type         | Description |
+| ------------ | ------------ | ----------- |
+| v-model      | `(value: string)`     | Data to bind |
+
+### Checkbox `<el-checkbox>`
+A model checkbox component.
+#### Checkbox props
+| Name         | Type         | Default      | Description |
+| ------------ | ------------ | ------------ | ----------- |
+| errorMessage | `string`     | `undefined`  | Custom error message to display |
+| label        | `string`     | `undefined`  | The label that renders next to the checkbox |
+
+#### Checkbox two-way data binding
 | Name         | Type         | Description |
 | ------------ | ------------ | ----------- |
 | v-model      | `(value: string)`     | Data to bind |

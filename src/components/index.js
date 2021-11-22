@@ -1,5 +1,7 @@
+import Checkbox from './el-checkbox'
 import Input from './el-input'
 
 export {
-  Input
+  Checkbox,
+  Input,
 }
