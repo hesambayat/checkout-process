@@ -51,6 +51,22 @@ export default {
     }
   },
   created() {
+    // Validate github username
+    this.$watch(
+      () => this.githubUsername,
+      (username) => {
+        clearTimeout(this.validateGithubUserTimeout)
+        // Reset validation
+        this.$store.commit('setGithubUser', '')
+        if (username.length > 0 && !this.errors.githubUsername) {
+          // Validate github username
+          this.validateGithubUserTimeout = setTimeout(() => {
+            this.$store.dispatch('fetchGithubUser', username)
+          }, 500)
+        }
+      }
+    )
+
     // Update the next button enable/disabled state
     this.$watch(
       () => this.$store.state.userInfo,
