@@ -1,6 +1,11 @@
-$color-body: #000;
-$color-background: #fff;
+$color-body: #19181d !default;
+$color-background: #d8d8d8 !default;
+$color-orange: #f29f57 !default;
+$color-light-green: #4cdc7f !default;
 
-$font-family: -apple-system, system-ui, "Helvetica Neue", Helvetica, "Segoe UI", Roboto, "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
-$font-weight-regular: normal;
-$font-weight-bold: bold;
+$font-family: "Neue Machina", -apple-system, system-ui, "Helvetica Neue", Helvetica, "Segoe UI", Roboto, "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+$font-weight-regular: normal !default;
+$font-weight-bold: bold !default;
+
+$container-padding-x: 40px !default;
+$container-padding-y: 40px !default;
