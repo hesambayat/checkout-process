@@ -1,15 +1,11 @@
 <template>
-  <h1>Consent</h1>
-  <el-input v-model="email" label="Email" :errorMessage="errors.email" type="email" autocomplete="email" />
-  <el-checkbox v-model="termConsent" label="Agree with terms and services" :errorMessage="errors.termConsent" />
-  <router-link to="/info">Back</router-link>
-    <router-link 
-    to="/account"
-    custom
-    v-slot="{ navigate }"
-  >
-    <button @click="navigate" :disabled="!$store.state.slides.consent">Next</button>
-  </router-link>
+  <el-grid columns="2">
+    <el-input v-model="email" label="Email" :errorMessage="errors.email" type="email" autocomplete="email" />
+  </el-grid>
+  <el-grid columns="2">
+    <el-checkbox v-model="termConsent" label="By using this website, you certify that you have read and reviews the agreement and that you agree to comply this its terms." :errorMessage="errors.termConsent" />
+  </el-grid>
+  <layout-navigation :back="{ to: '/info' }" :next="{ to: '/account', disabled: !$store.state.slides.consent }" />
 </template>
 
 <script>
@@ -39,7 +35,7 @@ export default {
       },
       set(value) {
         const accepted = value === 'yes' ? 'yes' : ''
-        this.errors.termConsent = !required(accepted) ? 'This field is required' : ''
+        this.errors.termConsent = !required(accepted) ? 'Agreement to terms is required' : ''
         this.$store.commit('setTermConsent', accepted)
       }
     }

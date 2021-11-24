@@ -1,5 +1,4 @@
 <template>
-  <h1>Account</h1>
   <img :src="avatar" />
 </template>
 

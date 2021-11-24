@@ -1,16 +1,10 @@
 <template>
-  <h1>Info</h1>
-  <el-input v-model="givenName" label="First name" :errorMessage="errors.givenName" type="text" autocomplete="given-name" />
-  <el-input v-model="familyName" label="Last name" :errorMessage="errors.familyName" type="text" autocomplete="family-name" />
-  <el-input v-model="githubUsername" label="Github username" :errorMessage="errors.githubUsername" type="text" />
-  <router-link to="/">Back</router-link>
-  <router-link 
-    to="/consent"
-    custom
-    v-slot="{ navigate }"
-  >
-    <button @click="navigate" :disabled="!$store.state.slides.info">Next</button>
-  </router-link>
+  <el-grid columns="2">
+    <el-input v-model="givenName" label="First name" :errorMessage="errors.givenName" type="text" autocomplete="given-name" />
+    <el-input v-model="familyName" label="Last name" :errorMessage="errors.familyName" type="text" autocomplete="family-name" />
+    <el-input v-model="githubUsername" label="Github username" :errorMessage="errors.githubUsername" type="text" />
+  </el-grid>
+  <layout-navigation :back="{ to: '/' }" :next="{ to: '/consent', disabled: !$store.state.slides.info }" />
 </template>
 
 <script>
