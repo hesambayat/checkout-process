@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import template from './template'
 import router from './router'
 import * as components from './components'
-import './scss/reset.scss'
+import './scss/global.scss'
 import store from './store'
 
 const app = createApp(template)

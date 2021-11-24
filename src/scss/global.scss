@@ -1,4 +1,5 @@
 @import '~@/scss/variables';
+@import '~@/scss/fonts';
 
 html {
   font-size: 100%;
@@ -55,6 +56,8 @@ textarea {
   font-size: 100%;
   line-height: 1.15;
   margin: 0;
+  background-color: $color-background;
+  color: inherit;
 }
 
 button,
@@ -71,8 +74,21 @@ button,
 [type="button"],
 [type="reset"],
 [type="submit"] {
-  -webkit-appearance: button;
-  
+  display: block;
+  position: relative;
+  height: auto;
+  padding: 20px 20px 10px;
+  line-height: 70px;
+  text-align: center;
+  user-select: none;
+  font-size: 60px;
+  font-weight: $font-weight-bold;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  border-radius: 0;
+  border: none;
+  white-space: nowrap;
+
   &::-moz-focus-inner {
     border-style: none;
     padding: 0;
