@@ -46,6 +46,15 @@ A model checkbox component.
 | ------------ | ------------ | ----------- |
 | v-model      | `(value: string)`     | Data to bind |
 
+### Grid `<el-grid>`
+A CSS grid based component.
+#### Grid props
+| Name         | Type         | Default      | Description |
+| ------------ | ------------ | ------------ | ----------- |
+| rows         | `string`     | `1`          | Number of rows |
+| columns      | `string`     | `1`          | Number of columns |
+| gap          | `string`     | `0 100px`    | Vertical and horizontal spacing |
+
 ## Store
 This app uses Vuex as a centralized store for state management pattern + library. The global store is divided into three modules, one for each of two forms and one for keeping track of completed forms. The latter will help simplify the view components in rendering the relevant UI relatively to the checkout process state.
 
