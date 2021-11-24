@@ -13,6 +13,6 @@ for (let component of Object.entries(components)) {
 
 app.use(store)
 app.use(router)
-app.mount('#app')
+app.mount('#page')
 
 app.config.performance = process.env.NODE_ENV !== 'production'
