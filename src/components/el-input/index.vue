@@ -2,8 +2,8 @@
   <div class="input" :class="{ error: !!errorMessage }">
     <label>
       <span class="input__label" v-if="!!label">{{ label }}</span>
-      <input :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" :type="type" :autocomplete="autocomplete" />
-      <span class="input__error-message" v-if="!!errorMessage">{{ errorMessage }}</span>
+      <input :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" @blur="onblur" :type="type" :autocomplete="autocomplete" />
+      <span class="input__error-message" v-if="!!errorMessage?.trim()">{{ errorMessage }}</span>
     </label>
   </div>
 </template>
@@ -11,7 +11,7 @@
 <script>
 export default {
   name: 'el-input',
-  props: ['modelValue', 'label', 'type', 'errorMessage', 'autocomplete'],
+  props: ['modelValue', 'label', 'type', 'errorMessage', 'autocomplete', 'onblur'],
   emits: ['update:modelValue'],
 }
 </script>
