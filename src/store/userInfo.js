@@ -36,12 +36,17 @@ export default {
 
       clearTimeout(timeout)
       timeout = setTimeout(async () => {
-        const result = await fetch(`https://api.github.com/users/${payload}`)
-        const data = await result.json()
-
-        GithubUserCache.set(payload, data, minutes(60))
-        commit('setGithubPayload', data)
-      }, 1000)
+        try {          
+          const result = await fetch(`https://api.github.com/users/${payload}`)
+          const data = await result.json()
+  
+          GithubUserCache.set(payload, data, minutes(60))
+          commit('setGithubPayload', data)
+        } catch (error) {
+          const message = !navigator.onLine ? { message: 'No internet connection' } : error
+          commit('setGithubPayload', message)
+        }
+      }, 500)
     }
   },
   getters: {
