@@ -1,4 +1,5 @@
 <template>
+  <layout-pattern />
   <layout-header />
   <main id="content" class="site-content">
     <router-view />
