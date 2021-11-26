@@ -89,11 +89,14 @@ export default {
       () => this.githubUsername,
       (username) => {
         // Reset validation
+        clearTimeout(this.timeout)
         this.$store.commit('setGithubPayload', '')
         if (username.length > 0 && !this.errors.githubUsername) {
           // Validate github username
           this.loading = true
-          this.$store.dispatch('fetchGithubUser', username)
+          this.timeout = setTimeout(() => {
+            this.$store.dispatch('getGithubPayload', username)
+          }, 1000)
         } else {
           this.loading = false
         }

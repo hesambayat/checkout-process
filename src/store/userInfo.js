@@ -1,9 +1,4 @@
-import Cache from '@/utils/cache'
-import minutes from '@/utils/minutes'
-
-const GithubUserCache = new Cache(20)
-
-let timeout
+import getGithubUser from '@/services/getGithubUser'
 
 export default {
   state: {
@@ -27,26 +22,13 @@ export default {
     }
   },
   actions: {
-    fetchGithubUser({ commit }, payload) {
-      const cached = GithubUserCache.get(payload)
-      if (cached) {
-        commit('setGithubPayload', cached)
-        return false
+    async getGithubPayload({ commit }, payload) {
+      try {          
+        const data = await getGithubUser(payload)
+        commit('setGithubPayload', data)
+      } catch (error) {
+        commit('setGithubPayload', error)
       }
-
-      clearTimeout(timeout)
-      timeout = setTimeout(async () => {
-        try {          
-          const result = await fetch(`https://api.github.com/users/${payload}`)
-          const data = await result.json()
-  
-          GithubUserCache.set(payload, data, minutes(60))
-          commit('setGithubPayload', data)
-        } catch (error) {
-          const message = !navigator.onLine ? { message: 'No internet connection' } : error
-          commit('setGithubPayload', message)
-        }
-      }, 500)
     }
   },
   getters: {
