@@ -1,13 +1,13 @@
 <template>
-  <img :src="avatar" />
+  <img :src="github?.avatar_url" />
 </template>
 
 <script>
 export default {
   name: 'Account',
   computed: {
-    avatar() {
-      return this.$store.getters.avatar
+    github() {
+      return this.$store.getters.github
     }
   },
   mounted() {

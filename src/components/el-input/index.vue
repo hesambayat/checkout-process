@@ -72,6 +72,12 @@ export default {
     color: $color-body;
 
     @include make-decorate(-4px, 5px);
+
+    will-change: transform;
+
+    @at-root input:focus + #{&} {
+      transform: translate(-10px, -12px) rotate(-1deg);
+    }
   }
 }
 </style>

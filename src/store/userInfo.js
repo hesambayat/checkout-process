@@ -1,10 +1,16 @@
+import Cache from '@/utils/cache'
+import minutes from '@/utils/minutes'
+
+const GithubUserCache = new Cache(20)
+
+let timeout
 
 export default {
   state: {
     givenName: '',
     familyName: '',
     githubUsername: '',
-    githubUser: ''
+    githubPayload: ''
   },
   mutations: {
     setGivenName(state, payload) {
@@ -16,25 +22,31 @@ export default {
     setGithubUsername(state, payload) {
       state.githubUsername = payload.trim()
     },
-    setGithubUser(state, payload) {
-      state.githubUser = payload
+    setGithubPayload(state, payload) {
+      state.githubPayload = payload
     }
   },
   actions: {
-    async fetchGithubUser({ commit }, payload) {
-      // https://api.github.com/search/users?q={query}
-      const result = await fetch(`https://api.github.com/users/${payload}`)
-      if (result.status === 200) {
-        const data = await result.json()
-        commit('setGithubUser', data)
-      } else {
-        commit('setGithubUser', '')
+    fetchGithubUser({ commit }, payload) {
+      const cached = GithubUserCache.get(payload)
+      if (cached) {
+        commit('setGithubPayload', cached)
+        return false
       }
+
+      clearTimeout(timeout)
+      timeout = setTimeout(async () => {
+        const result = await fetch(`https://api.github.com/users/${payload}`)
+        const data = await result.json()
+
+        GithubUserCache.set(payload, data, minutes(60))
+        commit('setGithubPayload', data)
+      }, 1000)
     }
   },
   getters: {
-    avatar(state) {
-      return state.githubUser?.avatar_url
+    github(state) {
+      return state.githubPayload
     }
   }
 }

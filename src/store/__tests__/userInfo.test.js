@@ -7,7 +7,7 @@ const $mock = {
   givenName: '  John  ',
   familyName: '  Doe  ',
   githubUsername: '  john.doe  ',
-  githubUser: { avatar_url: 'https://avatars.githubusercontent.com/u/1234567?v=3' }
+  githubPayload: { message: 'Not found' }
 }
 
 describe('userInfo module state', () => {
@@ -23,8 +23,8 @@ describe('userInfo module state', () => {
     expect($store.state.githubUsername).toEqual('')
   })
 
-  it('githubUser initial value returns "\'\'"', () => {
-    expect($store.state.githubUser).toEqual('')
+  it('githubPayload initial value returns "\'\'"', () => {
+    expect($store.state.githubPayload).toEqual('')
   })
 })
 
@@ -44,14 +44,14 @@ describe('userInfo module mutations', () => {
     expect($store.state.githubUsername).toEqual($mock.githubUsername.trim())
   })
 
-  it('setGithubUser updates state.githubUser', () => {
-    $store.commit('setGithubUser', $mock.githubUser)
-    expect($store.state.githubUser).toEqual($mock.githubUser)
+  it('setGithubPayload updates state.githubPayload', () => {
+    $store.commit('setGithubPayload', $mock.githubPayload)
+    expect($store.state.githubPayload).toEqual($mock.githubPayload)
   })
 })
 
 describe('userInfo module getters', () => {
-  it('avatar returns mocked value', () => {
-    expect($store.getters.avatar).toBe($mock.githubUser.avatar_url)
+  it('github returns mocked value', () => {
+    expect($store.getters.github).toStrictEqual($mock.githubPayload)
   })
 })
