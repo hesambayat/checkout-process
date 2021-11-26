@@ -5,6 +5,7 @@
       <input :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" @blur="onblur" :type="type" :autocomplete="autocomplete" />
       <span class="input__error-message" v-if="!!errorMessage?.trim()">{{ errorMessage }}</span>
     </label>
+    <slot />
   </div>
 </template>
 

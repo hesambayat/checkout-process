@@ -1,6 +1,6 @@
 <template>
-  <header id="masthead" class="site-header">
-    <router-link to="/" class="site-header__logo">✺</router-link>      
+  <header id="masthead" class="site__header">
+    <router-link to="/" class="site__header__logo">✺</router-link>      
   </header>
 </template>
 
@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style lang="scss">
-.site-header {
+.site__header {
   @include make-container();
 
   margin-top: 20px;

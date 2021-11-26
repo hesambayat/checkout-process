@@ -2,8 +2,7 @@
   <el-grid columns="2">
     <el-input v-model="givenName" label="First name" :errorMessage="errors.givenName" type="text" autocomplete="given-name" />
     <el-input v-model="familyName" label="Last name" :errorMessage="errors.familyName" type="text" autocomplete="family-name" />
-    <div class="github">
-      <el-input v-model="githubUsername" label="Github username" :errorMessage="errors.githubUsername" type="text" />
+    <el-input v-model="githubUsername" label="Github username" :errorMessage="errors.githubUsername" class="github" type="text">
       <div class="github__loader">
         <svg v-if="loading" width="50px" height="50px" viewBox="0 0 50 50">
           <path d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
@@ -20,7 +19,7 @@
         </svg>
         <img v-if="!loading && github?.avatar_url" :src="github.avatar_url" class="github__thumb" />
       </div>
-    </div>
+    </el-input>
   </el-grid>
   <layout-navigation :back="{ to: '/' }" :next="{ to: '/consent', disabled: !$store.state.slides.info, hint: hint, callback: validate }" />
 </template>
@@ -144,11 +143,12 @@ export default {
 
   &__loader {
     position: absolute;
-    bottom: 80px;
+    bottom: 20px;
     right: 20px;
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    pointer-events: none;
 
     img {
       display: block;
@@ -165,7 +165,7 @@ export default {
     }
   }
 
-  .input input {
+  input {
     padding-right: 50px;
   }
 }

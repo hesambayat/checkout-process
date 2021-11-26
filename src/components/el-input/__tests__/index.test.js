@@ -10,7 +10,11 @@ describe('el-input', () => {
     autocomplete: 'email'
   }
 
-  const wrapper = shallowMount(Component, { props })
+  const slots = {
+    default: 'Extra Content'
+  }
+
+  const wrapper = shallowMount(Component, { props, slots })
   const input = wrapper.find('input')
 
   it('renders props.label when passed', () => {
@@ -31,5 +35,9 @@ describe('el-input', () => {
 
   it('renders props.modelValue when passed', () => {
     expect(input.element.value).toBe(props.modelValue)
+  })
+
+  it('renders slot when passed', () => {
+    expect(wrapper.text()).toMatch(slots.default)
   })
 })
