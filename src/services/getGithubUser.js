@@ -12,7 +12,9 @@ export default async username => {
   try {
     const result = await fetch(`https://api.github.com/users/${username}`)
     const data = await result.json()
-    GithubUserCache.set(username, data, minutes(60))
+    if (data.message === undefined) {
+      GithubUserCache.set(username, data, minutes(60))
+    }
     return data
   } catch (error) {
     throw !navigator.onLine ? { message: 'No internet connection' } : error

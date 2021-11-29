@@ -31,8 +31,10 @@ export default {
       cursor: url("~@/assets/images/cursor-disabled.svg"), auto;
     }
 
-    &:active {
-      cursor: url("~@/assets/images/cursor-active.svg"), auto;
+    &:not(:disabled):not(.disabled) {
+      &:active {
+        cursor: url("~@/assets/images/cursor-active.svg"), auto;
+      }
     }
   }
 

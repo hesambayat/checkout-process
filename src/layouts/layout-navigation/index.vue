@@ -95,7 +95,6 @@ export default {
       svg {
         .failed {
           opacity: 1;
-          fill: currentColor;
         }
 
         .listening {
