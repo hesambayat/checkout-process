@@ -91,6 +91,17 @@ export default {
     &.disabled {
       background-color: $color-wild-green;
       color: $color-kaki-green;
+
+      svg {
+        .failed {
+          opacity: 1;
+          fill: currentColor;
+        }
+
+        .listening {
+          opacity: 0;
+        }
+      }
     }
 
     &.hint {
@@ -116,6 +127,14 @@ export default {
 
         .listening {
           opacity: 0;
+        }
+      }
+    }
+
+    &.disabled:not(.hint) {
+      svg {
+        .failed {
+          fill: currentColor;
         }
       }
     }
