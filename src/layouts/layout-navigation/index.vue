@@ -1,6 +1,6 @@
 <template>
   <nav class="navigation">
-    <router-link :to="back.to">Go back!</router-link>
+    <router-link :to="back.to">&#10229; Back</router-link>
     <router-link 
       :to="next.to"
       custom
@@ -60,12 +60,29 @@ export default {
 <style lang="scss">
 .navigation {
   display: flex;
-  justify-content: flex-end;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   margin-bottom: $container-padding-y;
 
+  @media (min-width: $breakpoint) {
+    & {
+      justify-content: flex-end;
+      flex-direction: row;
+    }
+  }
+
   & > *:last-child {
-    margin-left: 60px;
+    order: -1;
+    margin-bottom: $container-padding-y;
+    @media (min-width: $breakpoint) {
+      & {
+        margin-left: 60px;
+        order: 2;
+        margin-bottom: 0;
+      }
+    }
   }
 
   a {
@@ -74,18 +91,23 @@ export default {
     font-weight: $font-weight-bold;
     line-height: 36px;
     user-select: none;
+
+    &:focus:not(:active) {
+      text-decoration: underline;
+    }
   }
 
   button {
     padding: 20px 110px 10px 20px;
     background-color: $color-light-green;
-    @include make-decorate(-12px, 11px);
+    border: 5px solid;
     will-change: transform, box-shadow;
 
-    &:active {
-      
-      transform: translate(-12px, 11px);
-      @include make-decorate(0, 0);
+    &:focus,
+    &:hover {
+      &:not(:active) {
+        @include make-decorate();
+      }
     }
 
     &.disabled {

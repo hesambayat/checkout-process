@@ -1,5 +1,6 @@
 // Container mixins
 
-@mixin make-decorate($x: -10px, $y: 8px, $blur: 0, $spread: 0, $color: $color-body) {
+@mixin make-decorate($x: -8px, $y: 6px, $blur: 0, $spread: 0, $color: $color-body) {
   box-shadow: $x $y $blur $spread $color;
+  transform: translate($x * -1, $y * -1);
 }

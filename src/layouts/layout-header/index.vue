@@ -1,6 +1,6 @@
 <template>
   <header id="masthead" class="site__header">
-    <router-link to="/" class="site__header__logo">✺</router-link>      
+    <router-link to="/" class="site__header__logo">&#10033;</router-link>      
   </header>
 </template>
 
@@ -23,12 +23,15 @@ export default {
     font-weight: bold;
     line-height: 1;
     color: $color-light-green;
-    text-shadow: -4px 5px 0 $color-body;
+    will-change: transform, text-shadow;
     user-select: none;
 
-    &:active {
-      text-shadow: none;
-      transform: translate(-4px, 5px);
+    &:focus,
+    &:hover {
+      &:not(:active) {
+        text-shadow: -4px 5px 0 $color-body;
+        transform: translate(4px, -5px);
+      }
     }
   }
 }

@@ -2,7 +2,7 @@
   <div class="input" :class="{ error: !!errorMessage }">
     <label>
       <span class="input__label" v-if="!!label">{{ label }}</span>
-      <input :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" @blur="onblur" :type="type" :autocomplete="autocomplete" />
+      <input :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" @blur="onblur" @focus="onfocus" :type="type" :autocomplete="autocomplete" />
       <span class="input__error-message" v-if="!!errorMessage?.trim()">{{ errorMessage }}</span>
     </label>
     <slot />
@@ -12,7 +12,7 @@
 <script>
 export default {
   name: 'el-input',
-  props: ['modelValue', 'label', 'type', 'errorMessage', 'autocomplete', 'onblur'],
+  props: ['modelValue', 'label', 'type', 'errorMessage', 'autocomplete', 'onblur', 'onfocus'],
   emits: ['update:modelValue'],
 }
 </script>
@@ -41,9 +41,11 @@ export default {
     border-radius: 0;
     background-color: $color-background;
     color: inherit;
-    
-    @include make-decorate();
 
+    &:focus {
+      @include make-decorate();
+    }
+    
     appearance: none;
   }
 
@@ -67,17 +69,17 @@ export default {
     font-size: 21px;
     font-weight: $font-weight-bold;
     line-height: 24px;
-    transform: translateY(-20px) rotate(2deg);
     pointer-events: none;
     background-color: $color-orange;
     color: $color-body;
 
     @include make-decorate(-4px, 5px);
+    transform: translateY(-20px) rotate(2deg);
 
     will-change: transform;
 
     @at-root input:focus + #{&} {
-      transform: translate(-10px, -12px) rotate(-1deg);
+      transform: translate(-10px, -16px) rotate(-1deg);
     }
   }
 }

@@ -21,7 +21,8 @@ export default {
     cursor: url("~@/assets/images/cursor.svg"), auto;
   }
 
-  a {
+  a,
+  button {
     cursor: url("~@/assets/images/cursor-hand.svg"), auto;
   }
 
@@ -33,7 +34,7 @@ export default {
 
     &:not(:disabled):not(.disabled) {
       &:active {
-        cursor: url("~@/assets/images/cursor-active.svg"), auto;
+        cursor: url("~@/assets/images/cursor-hand.svg"), auto;
       }
     }
   }

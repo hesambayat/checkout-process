@@ -56,13 +56,15 @@ export default {
     background-color: $color-background;
     color: inherit;
 
-    @include make-decorate();
-
     svg {
       fill: currentColor;
       width: 20px;
       height: 16px;
       opacity: 0;
+    }
+
+    @at-root input:focus + #{&} {
+      @include make-decorate();
     }
 
     @at-root input:checked + #{&} {
@@ -91,12 +93,12 @@ export default {
     font-size: 21px;
     font-weight: $font-weight-bold;
     line-height: 24px;
-    transform: translateY(-20px) rotate(2deg);
     pointer-events: none;
     background-color: $color-orange;
     color: $color-body;
 
     @include make-decorate(-4px, 5px);
+    transform: translateY(-20px) rotate(2deg);
   }
 }
 </style>

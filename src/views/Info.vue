@@ -1,8 +1,8 @@
 <template>
   <el-grid columns="2">
-    <el-input v-model="givenName" label="First name" :errorMessage="errors.givenName" type="text" autocomplete="given-name" />
-    <el-input v-model="familyName" label="Last name" :errorMessage="errors.familyName" type="text" autocomplete="family-name" />
-    <el-input v-model="githubUsername" label="Github username" :errorMessage="errors.githubUsername" class="github" type="text">
+    <el-input v-model="givenName" label="First name" :errorMessage="errors.givenName" :onfocus="onfocus('givenName')" :onblur="onfocus()" type="text" autocomplete="given-name" />
+    <el-input v-model="familyName" label="Last name" :errorMessage="errors.familyName" :onfocus="onfocus('familyName')" :onblur="onfocus()" type="text" autocomplete="family-name" />
+    <el-input v-model="githubUsername" label="Github username" :errorMessage="errors.githubUsername" :onfocus="onfocus('githubUsername')" :onblur="onfocus()" type="text" class="github" :class="{ focus: focused === 'githubUsername' }">
       <div class="github__loader">
         <svg v-if="loading" width="50px" height="50px" viewBox="0 0 50 50">
           <path d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
@@ -32,6 +32,7 @@ export default {
   data: () => ({ 
     errors: {},
     loading: false,
+    focused: ''
   }),
   methods: {
     validate () {
@@ -40,6 +41,11 @@ export default {
       this.githubUsername = this.$store.state.userInfo.githubUsername
       if (this.github?.message) {
         this.errors.githubUsername = this.github.message || this.errors.githubUsername
+      }
+    },
+    onfocus (field) {
+      return () => {
+        this.focused = field
       }
     }
   },
@@ -149,6 +155,10 @@ export default {
     height: 40px;
     border-radius: 50%;
     pointer-events: none;
+
+    @at-root .focus #{&} {
+      transform: translate(6px, -8px)
+    }
 
     img {
       display: block;
