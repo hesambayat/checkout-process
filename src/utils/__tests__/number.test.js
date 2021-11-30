@@ -1,7 +1,6 @@
 import number from '../number'
 
 describe('number', () => {
-  const now = new Date()
   it('is number', () => {
     // invalid
     expect(number('')).toBe(false)
